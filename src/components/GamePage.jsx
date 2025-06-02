@@ -19,7 +19,7 @@ const playerColors = ['#FF5733', '#33C1FF', '#33FF57', '#FF33D1'];
 const GamePage = ({ players }) => {
   const navigate = useNavigate();
   const [currentCategory, setCurrentCategory] = useState('');
-  const [timer, setTimer] = useState(600);
+  const [timer, setTimer] = useState(180);
   const [isRunning, setIsRunning] = useState(false);
   const [selectedLetter, setSelectedLetter] = useState('');
   const [playerIndex, setPlayerIndex] = useState(0);
