@@ -1,0 +1,125 @@
+/* Stylos da HomePage */
+.homepage {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f0f4f8;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .homepage h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .homepage label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+  }
+  
+  .homepage input[type="number"],
+  .homepage input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .homepage button {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .homepage button:hover {
+    background-color: #45a049;
+  }
+  
+  .homepage h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  /* Estilos da GamePage */
+  .game-page {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #f0f4f8;
+    border-radius: 12px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .sort-button, .stop-button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sort-button:hover, .stop-button:hover {
+    background-color: #45a049;
+  }
+  
+  .alphabet-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .letter-button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #eee;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .letter-button:hover {
+    transform: scale(1.1);
+  }
+  
+  .selected {
+    border: 2px solid #333;
+  }
+  
+  .center-panel {
+    margin: 20px 0;
+  }
+  
+  .score-panel {
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .winner-banner {
+    margin-top: 30px;
+    font-size: 1.5rem;
+    color: #ff5733;
+    font-weight: bold;
+  }
+  
