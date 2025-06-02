@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // para navegação
 import '../styles/styles.css';
 
 const categories = [
@@ -13,12 +14,12 @@ const categories = [
 ];
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-
-const playerColors = ['#FF5733', '#33C1FF', '#33FF57', '#FF33D1']; 
+const playerColors = ['#FF5733', '#33C1FF', '#33FF57', '#FF33D1'];
 
 const GamePage = ({ players }) => {
+  const navigate = useNavigate(); // hook do react-router
   const [currentCategory, setCurrentCategory] = useState('');
-  const [timer, setTimer] = useState(600); 
+  const [timer, setTimer] = useState(600);
   const [isRunning, setIsRunning] = useState(false);
   const [selectedLetter, setSelectedLetter] = useState('');
   const [playerIndex, setPlayerIndex] = useState(0);
@@ -47,12 +48,12 @@ const GamePage = ({ players }) => {
   const handleSortCategory = () => {
     const randomIndex = Math.floor(Math.random() * categories.length);
     setCurrentCategory(categories[randomIndex]);
+    setIsRunning(true); // começa o jogo automaticamente ao sortear categoria
   };
 
   const handleLetterClick = (letter) => {
     if (usedLetters.includes(letter)) return;
     setSelectedLetter(letter);
-    setIsRunning(true);
   };
 
   const handleStop = () => {
@@ -63,12 +64,15 @@ const GamePage = ({ players }) => {
       setPlayerIndex((prev) => (prev + 1) % players.length);
       setUsedLetters([...usedLetters, selectedLetter]);
       setSelectedLetter('');
-      setIsRunning(false);
     }
   };
 
+  const allLettersUsed = usedLetters.length === alphabet.length;
   const maxScore = Math.max(...scores);
-  const winnerIndex = scores.indexOf(maxScore);
+  const winnerIndices = scores.reduce((acc, score, i) => {
+    if (score === maxScore) acc.push(i);
+    return acc;
+  }, []);
 
   return (
     <div className="game-page">
@@ -116,9 +120,17 @@ const GamePage = ({ players }) => {
         ))}
       </div>
 
-      {timer === 0 && (
+      {(timer === 0 || allLettersUsed) && (
         <div className="winner-banner">
-          🏆 {players[winnerIndex]} venceu com {maxScore} pontos!
+          🏆 {winnerIndices.length > 1
+            ? `Empate entre ${winnerIndices.map(i => players[i]).join(', ')} com ${maxScore} pontos!`
+            : `${players[winnerIndices[0]]} venceu com ${maxScore} pontos!`
+          }
+          <div>
+            <button className="home-button" onClick={() => navigate('/')}>
+              Voltar à Home
+            </button>
+          </div>
         </div>
       )}
     </div>

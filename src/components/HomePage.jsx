@@ -63,6 +63,7 @@ const HomePage = ({ setPlayers }) => {
           Iniciar Jogo
         </button>
       )}
+   
     </div>
   );
 };
