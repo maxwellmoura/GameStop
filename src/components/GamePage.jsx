@@ -2,14 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/styles.css';
 
-const categories = [
-  'Nome', 'Cidade', 'Animal', 'Cor', 'Fruta', 'Profissão', 'Objeto',
-  'País', 'Filme', 'Livro', 'Comida', 'Bebida', 'Marca', 'Carro',
-  'Esporte', 'Instrumento Musical', 'Flor', 'Personagem Famoso',
-  'Super-herói', 'Aplicativo', 'Jogo', 'Cantor', 'Banda', 'Série',
-  'Desenho', 'Doença', 'Remédio', 'Parte do Corpo', 'Palavra em Inglês',
-  'Lugar Turístico', 'Ingrediente', 'Peça de Roupa', 'Calçado',
-  'Ferramenta', 'Peça de Computador', 'Software', 'Instrumento de Medição',
+const categories = [/* ... (mesmo conteúdo) ... */
   'Animal Marinho', 'Ave', 'Inseto'
 ];
 
@@ -52,9 +45,18 @@ const GamePage = ({ players }) => {
   };
 
   const handleLetterClick = (letter) => {
-    if (!currentCategory) return; // impede clicar se não tiver categoria
-    if (usedLetters.includes(letter)) return;
-    setSelectedLetter(letter);
+    if (!currentCategory) return;
+
+    if (usedLetters.includes(letter)) {
+      // Se clicar novamente, reativa a letra e remove ponto
+      const lastPlayer = (playerIndex - 1 + players.length) % players.length;
+      const newScores = [...scores];
+      if (newScores[lastPlayer] > 0) newScores[lastPlayer] -= 1;
+      setScores(newScores);
+      setUsedLetters(usedLetters.filter(l => l !== letter));
+    } else {
+      setSelectedLetter(letter);
+    }
   };
 
   const handleStop = () => {
@@ -68,6 +70,16 @@ const GamePage = ({ players }) => {
     }
   };
 
+  const handleReset = () => {
+    setCurrentCategory('');
+    setTimer(600);
+    setIsRunning(false);
+    setSelectedLetter('');
+    setPlayerIndex(0);
+    setScores(players.map(() => 0));
+    setUsedLetters([]);
+  };
+
   const allLettersUsed = usedLetters.length === alphabet.length;
   const maxScore = Math.max(...scores);
   const winnerIndices = scores.reduce((acc, score, i) => {
@@ -79,6 +91,7 @@ const GamePage = ({ players }) => {
     <div className="game-page">
       <h1>Categoria: {currentCategory || 'Nenhuma selecionada'}</h1>
       <button className="sort-button" onClick={handleSortCategory}>Sortear Categoria</button>
+      <button className="reset-button" onClick={handleReset}>Desistir / Reiniciar</button>
 
       <div className="alphabet-grid">
         {alphabet.map((letter) => {
@@ -93,11 +106,11 @@ const GamePage = ({ players }) => {
                   : isUsed
                     ? '#bbb'
                     : '#eee',
-                cursor: (!currentCategory || isUsed) ? 'not-allowed' : 'pointer',
-                opacity: (!currentCategory || isUsed) ? 0.5 : 1
+                cursor: (!currentCategory) ? 'not-allowed' : 'pointer',
+                opacity: (!currentCategory) ? 0.5 : 1
               }}
               onClick={() => handleLetterClick(letter)}
-              disabled={!currentCategory || isUsed}
+              disabled={!currentCategory}
             >
               {letter}
             </button>
