@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // para navegação
+import { useNavigate } from 'react-router-dom';
 import '../styles/styles.css';
 
 const categories = [
@@ -17,7 +17,7 @@ const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const playerColors = ['#FF5733', '#33C1FF', '#33FF57', '#FF33D1'];
 
 const GamePage = ({ players }) => {
-  const navigate = useNavigate(); // hook do react-router
+  const navigate = useNavigate();
   const [currentCategory, setCurrentCategory] = useState('');
   const [timer, setTimer] = useState(600);
   const [isRunning, setIsRunning] = useState(false);
@@ -48,10 +48,11 @@ const GamePage = ({ players }) => {
   const handleSortCategory = () => {
     const randomIndex = Math.floor(Math.random() * categories.length);
     setCurrentCategory(categories[randomIndex]);
-    setIsRunning(true); // começa o jogo automaticamente ao sortear categoria
+    setIsRunning(true);
   };
 
   const handleLetterClick = (letter) => {
+    if (!currentCategory) return; // impede clicar se não tiver categoria
     if (usedLetters.includes(letter)) return;
     setSelectedLetter(letter);
   };
@@ -92,11 +93,11 @@ const GamePage = ({ players }) => {
                   : isUsed
                     ? '#bbb'
                     : '#eee',
-                cursor: isUsed ? 'not-allowed' : 'pointer',
-                opacity: isUsed ? 0.5 : 1
+                cursor: (!currentCategory || isUsed) ? 'not-allowed' : 'pointer',
+                opacity: (!currentCategory || isUsed) ? 0.5 : 1
               }}
               onClick={() => handleLetterClick(letter)}
-              disabled={isUsed}
+              disabled={!currentCategory || isUsed}
             >
               {letter}
             </button>
