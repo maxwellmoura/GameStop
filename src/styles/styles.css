@@ -254,7 +254,7 @@
 
 /* Notebooks e Desktop */
 @media screen and (min-width: 1025px) {
-  /* As definições originais já atendem bem estas telas */
+  
   .homepage {
     max-width: 600px;
     margin: 50px auto;
