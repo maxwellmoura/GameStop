@@ -67,29 +67,27 @@ O projeto estará acessível em http://localhost:3000.
 ✍️ Personalização
 const categories = [
   'Nome', 'Cidade', 'Animal', 'Cor', 'Fruta', ...
-];
+];  
+
 ✨ Melhorias Futuras
 Adição de perguntas e respostas por categoria.
 
-Validação automática de respostas.
+Validação automática de respostas.  
+Histórico de partidas.  
+Exportação dos resultados.  
+Integração com banco de dados e autenticação de usuários.  
 
-Histórico de partidas.
-
-Exportação dos resultados.
-
-Integração com banco de dados e autenticação de usuários.
-
-📸 Capturas de Tela
+📸 Capturas de Tela  
 ![Logo do Inicio do Jogo](https://raw.githubusercontent.com/maxwellmoura/GameStop/main/assets/TelaInicial.JPG)
 ![Logo do Escolhas dos Jogadores](https://raw.githubusercontent.com/maxwellmoura/GameStop/main/assets/TelaEscolhas.JPG)
 ![Logo do Jogo](https://raw.githubusercontent.com/maxwellmoura/GameStop/main/assets/TelaDoJogo.JPG)
 ![Logo do Vencedor](https://raw.githubusercontent.com/maxwellmoura/GameStop/main/assets/TelaVencedor.JPG)
 
-📄 Licença
-Este projeto está sob a licença MIT. Sinta-se à vontade para modificá-lo, distribuí-lo e utilizá-lo como base para novos jogos!
+📄 Licença  
+Este projeto está sob a licença MIT. Sinta-se à vontade para modificá-lo, distribuí-lo e utilizá-lo como base para novos jogos!  
 
-Divirta-se com o jogo Stop! ✋😄
+Divirta-se com o jogo Stop! ✋😄  
 
-🧑‍💻 Autor
-Desenvolvido por [Maxwell].
-Contribuições e sugestões são bem-vindas!
+🧑‍💻 Autor  
+Desenvolvido por [Maxwell].  
+Contribuições e sugestões são bem-vindas!  

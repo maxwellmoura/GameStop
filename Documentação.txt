@@ -1,0 +1,263 @@
+// Importações necessárias do React e de bibliotecas de terceiros
+import React, { useState, useEffect } from 'react';
+// React é a biblioteca principal para construir interfaces. 
+// useState cria estados locais(variáveis que mudam ao longo do tempo)
+// useEffect permite executar efeitos colaterais como timers ou requisições quando o componente é montado ou atualizado
+
+import { useNavigate } from 'react-router-dom'; // Hook que permite navegar programaticamente entre páginas/rotas
+import '../styles/styles.css'; // Importa o CSS para estilização do componente
+
+// Lista de categorias disponíveis para o jogo (uma das será sorteada aleatoriamente)
+const categories = [
+  'Nome', 'Cidade', 'Animal', 'Cor', 'Fruta', 'Profissão', 'Objeto',
+  'País', 'Filme', 'Livro', 'Comida', 'Bebida', 'Marca', 'Carro',
+  'Esporte', 'Instrumento Musical', 'Flor', 'Personagem Famoso',
+  'Super-herói', 'Aplicativo', 'Jogo', 'Cantor', 'Banda', 'Série',
+  'Desenho', 'Doença', 'Remédio', 'Parte do Corpo', 'Palavra em Inglês',
+  'Lugar Turístico', 'Ingrediente', 'Peça de Roupa', 'Calçado',
+  'Ferramenta', 'Peça de Computador', 'Software', 'Instrumento de Medição',
+  'Animal Marinho', 'Ave', 'Inseto'
+];
+
+// Array com as letras do alfabeto de A a Z
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+// Cores para identificar visualmente cada jogador (cor usada em botões e pontuação)
+const playerColors = ['#FF5733', '#33C1FF', '#33FF57', '#FF33D1'];
+
+// Componente principal do jogo
+const GamePage = ({ players }) => {
+  const navigate = useNavigate(); // Permite redirecionar o usuário para outra rota (ex: voltar para a home)
+
+  // useState cria estados locais que controlam os dados mutáveis do jogo:
+  const [currentCategory, setCurrentCategory] = useState(''); // Categoria atual sorteada
+  const [timer, setTimer] = useState(180); // Tempo restante (180 segundos = 3 minutos)
+  const [isRunning, setIsRunning] = useState(false); // Indica se o cronômetro está rodando
+  const [selectedLetter, setSelectedLetter] = useState(''); // Letra que o jogador escolheu
+  const [playerIndex, setPlayerIndex] = useState(0); // Índice do jogador atual na vez
+  const [scores, setScores] = useState(players.map(() => 0)); // Array com pontuações de cada jogador
+  const [usedLetters, setUsedLetters] = useState([]); // Letras que já foram utilizadas
+  const [letterOwners, setLetterOwners] = useState({}); // Guarda quem usou qual letra (ex: { A: 0 })
+  const [letterTimes, setLetterTimes] = useState({}); // Guarda quanto tempo restava quando a letra foi usada
+
+  // useEffect executa efeitos colaterais: aqui, atualiza o cronômetro a cada segundo enquanto estiver rodando
+  useEffect(() => {
+    let interval;
+    if (isRunning && timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prev) => prev - 1); // Reduz o tempo em 1 segundo a cada ciclo
+      }, 1000);
+    }
+    if (timer === 0) {
+      setIsRunning(false); // Para o cronômetro quando o tempo chega a zero
+    }
+    return () => clearInterval(interval); // Limpa o intervalo ao desmontar ou reiniciar o componente
+  }, [isRunning, timer]);
+
+  // Formata o tempo para o formato MM:SS (Minutos e Segundos)
+  const formatTime = (seconds) => {
+    const min = Math.floor(seconds / 60);
+    const sec = seconds % 60;
+    return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+  };
+
+  // Sorteia uma categoria aleatória e reinicia o jogo
+  const handleSortCategory = () => {
+    const randomIndex = Math.floor(Math.random() * categories.length);
+    setCurrentCategory(categories[randomIndex]); // Define a nova categoria
+    setTimer(180); // Reinicia o cronômetro para 3 minutos
+    setIsRunning(true); // Inicia o jogo
+    setSelectedLetter('');
+    setUsedLetters([]);
+    setLetterOwners({});
+    setLetterTimes({});
+    setScores(players.map(() => 0)); // Zera as pontuações
+    setPlayerIndex(0); // Começa com o primeiro jogador
+  };
+
+  // Executado quando o jogador clica em uma letra
+  const handleLetterClick = (letter) => {
+    // Só permite clique se houver categoria, tempo e se o jogador ainda não clicou
+    if (!currentCategory || !isRunning || timer === 0) return;
+    if (selectedLetter) return; // Jogador só pode escolher uma letra por rodada
+    if (usedLetters.includes(letter)) return; // Letra já foi usada
+
+    setSelectedLetter(letter); // Marca a letra escolhida pelo jogador atual
+  };
+
+  // Executado quando o jogador clica no botão STOP (confirma a letra e passa a vez)
+  const handleStop = () => {
+    if (timer === 0) return;
+
+    if (isRunning) {
+      setIsRunning(false); // Pausa o cronômetro
+
+      if (selectedLetter) {
+        const newScores = [...scores];
+        newScores[playerIndex] += 1; // Adiciona 1 ponto para o jogador da vez
+        setScores(newScores);
+
+        // Marca a letra como usada e registra quem a usou e quanto tempo restava
+        setUsedLetters([...usedLetters, selectedLetter]);
+        setLetterOwners({ ...letterOwners, [selectedLetter]: playerIndex });
+        setLetterTimes({ ...letterTimes, [selectedLetter]: timer });
+
+        setSelectedLetter(''); // Limpa a seleção para próxima rodada
+        setPlayerIndex((prev) => (prev + 1) % players.length); // Passa a vez ao próximo jogador
+      }
+    } else {
+      // Se estiver pausado, o botão vira START e retoma o cronômetro
+      setIsRunning(true);
+      setSelectedLetter('');
+    }
+  };
+
+  // Permite corrigir a jogada de outro jogador clicando duas vezes na letra usada
+  const handleLetterDoubleClick = (letter) => {
+    if (isRunning) return; // Correção só é permitida com o jogo pausado
+    if (!usedLetters.includes(letter)) return;
+
+    const owner = letterOwners[letter]; // Identifica quem usou essa letra
+    if (owner === undefined) return;
+
+    const newScores = [...scores];
+    newScores[owner] = Math.max(0, newScores[owner] - 1); // Remove 1 ponto do jogador
+    setScores(newScores);
+
+    // Remove a letra usada e restaura tempo e turno
+    setUsedLetters(usedLetters.filter((l) => l !== letter));
+    const newOwners = { ...letterOwners };
+    delete newOwners[letter];
+    setLetterOwners(newOwners);
+
+    const newTimes = { ...letterTimes };
+    const restoredTime = newTimes[letter];
+    delete newTimes[letter];
+    setLetterTimes(newTimes);
+
+    setTimer(restoredTime); // Restaura o tempo da jogada corrigida
+    setPlayerIndex(owner); // Volta a vez para o jogador original
+    setSelectedLetter('');
+  };
+
+  // Reinicia completamente o jogo (todos os estados voltam ao inicial)
+  const handleRestart = () => {
+    setCurrentCategory('');
+    setTimer(180);
+    setIsRunning(false);
+    setSelectedLetter('');
+    setPlayerIndex(0);
+    setScores(players.map(() => 0));
+    setUsedLetters([]);
+    setLetterOwners({});
+    setLetterTimes({});
+  };
+
+  const allLettersUsed = usedLetters.length === alphabet.length; // Se todas as letras foram usadas, o jogo termina
+
+  // Lógica para determinar quem ganhou (ou se houve empate)
+  const maxScore = Math.max(...scores);
+  const winnerIndices = scores.reduce((acc, score, i) => {
+    if (score === maxScore) acc.push(i);
+    return acc;
+  }, []);
+
+  const gameEnded = timer === 0 || allLettersUsed;
+
+  // Renderização do componente JSX (tela do jogo)
+  return (
+    <div className="game-page">
+      <h1>Categoria: {currentCategory || 'Nenhuma selecionada'}</h1>
+
+      {/* Botão que sorteia uma nova categoria */}
+      <button
+        className="sort-button"
+        onClick={handleSortCategory}
+        disabled={gameEnded || isRunning}
+      >
+        Sortear Categoria
+      </button>
+
+      {/* Botão para reiniciar o jogo */}
+      <button className="reset-button" onClick={handleRestart}>
+        Desistir / Reiniciar
+      </button>
+
+      {/* Voltar para a tela inicial */}
+      <button className="home-button" onClick={() => navigate('/')}>Voltar à Home</button>
+
+      {/* Grelha de letras A-Z */}
+      <div className="alphabet-grid">
+        {alphabet.map((letter) => {
+          const isUsed = usedLetters.includes(letter);
+          const isSelected = selectedLetter === letter;
+
+          return (
+            <button
+              key={letter}
+              className={`letter-button ${isUsed ? 'used' : ''}`}
+              style={{
+                backgroundColor: isUsed
+                  ? '#bbb'
+                  : isSelected
+                  ? playerColors[playerIndex]
+                  : '#eee',
+                cursor:
+                  !currentCategory || gameEnded || !isRunning || selectedLetter
+                    ? 'not-allowed'
+                    : 'pointer',
+                opacity: !currentCategory || gameEnded ? 0.5 : 1,
+              }}
+              onClick={() => handleLetterClick(letter)}
+              onDoubleClick={() => handleLetterDoubleClick(letter)}
+              disabled={
+                !currentCategory || gameEnded || !isRunning || selectedLetter || isUsed
+              }
+              title={isUsed ? 'Letra já confirmada, clique duplo para corrigir' : ''}
+            >
+              {letter}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Painel com cronômetro e botão STOP/START */}
+      <div className="center-panel">
+        <h2>Tempo: {formatTime(timer)}</h2>
+        <button
+          className="stop-button"
+          onClick={handleStop}
+          style={{
+            backgroundColor: isRunning ? 'green' : 'red',
+            color: '#fff',
+          }}
+          disabled={gameEnded}
+        >
+          {isRunning ? 'STOP' : 'START'}
+        </button>
+      </div>
+
+      {/* Exibe a pontuação de todos os jogadores */}
+      <div className="score-panel">
+        <h2>Pontuação:</h2>
+        {players.map((player, index) => (
+          <div key={index} style={{ color: playerColors[index % playerColors.length] }}>
+            {player}: {scores[index]} pts
+          </div>
+        ))}
+      </div>
+
+      {/* Exibe o vencedor quando o jogo acaba */}
+      {gameEnded && (
+        <div className="winner-banner">
+          🏆{' '}
+          {winnerIndices.length > 1
+            ? `Empate entre ${winnerIndices.map((i) => players[i]).join(', ')} com ${maxScore} pontos!`
+            : `${players[winnerIndices[0]]} venceu com ${maxScore} pontos!`}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default GamePage; // Exporta o componente principal do jogo
