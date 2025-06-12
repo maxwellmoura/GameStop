@@ -78,13 +78,11 @@ Exportação dos resultados.
 
 Integração com banco de dados e autenticação de usuários.  
 
-📸 Capturas de Tela
-![Logo do Inicio do Jogo]  
-
-(https://github.com/maxwellmoura/GameStop/blob/main/src/assets/TelaInicial.JPG)  
-![Logo do Escolhas dos Jogadores]  (https://github.com/maxwellmoura/GameStop/blob/main/src/assets/TelaEscolhas.JPG)  
-![Logo do Jogo]  (https://github.com/maxwellmoura/GameStop/blob/main/src/assets/TelaDoJogo.JPG)  
-![Logo do Vencedor]  (https://github.com/maxwellmoura/GameStop/blob/main/src/assets/TelaVencedor.JPG)  
+📸 Capturas de Tela  
+![Logo do Inicio do Jogo](https://github.com/maxwellmoura/GameStop/blob/main/src/assets/TelaInicial.JPG)  
+![Logo do Escolhas dos Jogadores](https://github.com/maxwellmoura/GameStop/blob/main/src/assets/TelaEscolhas.JPG)  
+![Logo do Jogo](https://github.com/maxwellmoura/GameStop/blob/main/src/assets/TelaDoJogo.JPG)  
+![Logo do Vencedor](https://github.com/maxwellmoura/GameStop/blob/main/src/assets/TelaVencedor.JPG)  
 
 📄 Licença
 Este projeto está sob a licença MIT. Sinta-se à vontade para modificá-lo, distribuí-lo e utilizá-lo como base para novos jogos!
