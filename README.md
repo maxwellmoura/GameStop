@@ -54,7 +54,6 @@ Este é um projeto de um jogo estilo *Stop* (também conhecido como Adedonha), d
 
 1. Clone o repositório:
 
-```bash
 git clone https://github.com/seu-usuario/jogo-stop-react.git
 cd jogo-stop-react
 
