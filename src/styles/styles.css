@@ -1,172 +1,8 @@
-/* Stylos da HomePage */
+/* HomePage */
 .homepage {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: #f0f4f8;
-    border-radius: 12px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-    text-align: center;
-  }
-  
-  .homepage h1 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .homepage label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #555;
-  }
-  
-  .homepage input[type="number"],
-  .homepage input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    box-sizing: border-box;
-  }
-  
-  .homepage button {
-    background-color: #4caf50;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .homepage button:hover {
-    background-color: #45a049;
-  }
-  
-  .homepage h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-  /* Estilos da GamePage */
-  .game-page {
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 20px;
-    background: #f0f4f8;
-    border-radius: 12px;
-    text-align: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  .sort-button {
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: #4caf50;
-    color: white;
-    transition: background-color 0.3s ease;
-  }
-  .stop-button{
-    padding: 50px 150px;
-    margin: 10px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: #af4c4c;
-    color: white;
-    transition: background-color 0.3s ease;
-  }
-  .reset-button {
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: #af4c4c;
-    color: white;
-    transition: background-color 0.3s ease;
-  }
-  
-  .sort-button:hover, .stop-button:hover {
-    background-color: #45a049;
-  }
-  
-  .alphabet-grid {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 10px;
-    margin: 20px 0;
-  }
-  
-  .letter-button {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 1rem;
-    background-color: #eee;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-  
-  .letter-button:hover {
-    transform: scale(1.1);
-  }
-  
-  .selected {
-    border: 2px solid #333;
-  }
-  
-  .center-panel {
-    margin: 20px 0;
-  }
-  
-  .score-panel {
-    margin-top: 20px;
-    text-align: left;
-  }
-  
-  .winner-banner {
-    margin-top: 30px;
-    font-size: 1.5rem;
-    color: #ff5733;
-    font-weight: bold;
-  }
-  .home-button{
-    display: flex;
-    text-decoration: none;    
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: #4caf50;
-    color: white;
-    transition: background-color 0.3s ease;
-  }
-  
-  .home-button:hover {
-    background-color: #45a049;
-  }
-  /* Estilo Responsivo */
-  /* Mobile  */
-.homepage, .game-page {
-  width: 90%;
-  margin: 30px auto;
-  padding: 20px;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
   background-color: #f0f4f8;
   border-radius: 12px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
@@ -174,11 +10,8 @@
   text-align: center;
 }
 
-.homepage h1,
-.game-page h1,
-.game-page h2,
-.homepage h2 {
-  font-size: 1.5rem;
+.homepage h1 {
+  font-size: 2rem;
   color: #333;
   margin-bottom: 20px;
 }
@@ -201,10 +34,7 @@
   box-sizing: border-box;
 }
 
-.homepage button,
-.sort-button,
-.reset-button,
-.home-button {
+.homepage button {
   background-color: #4caf50;
   color: white;
   padding: 12px 24px;
@@ -213,24 +43,74 @@
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+.homepage button:hover {
+  background-color: #45a049;
+}
+
+.homepage h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* GamePage */
+.game-page {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #f0f4f8;
+  border-radius: 12px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.sort-button {
+  padding: 10px 20px;
   margin: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  transition: background-color 0.3s ease;
 }
 
 .stop-button {
-  padding: 20px 50px;
+  padding: 50px 150px;
+  margin: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
   background-color: #af4c4c;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #af4c4c;
+  color: white;
+  transition: background-color 0.3s ease;
 }
 
 .sort-button:hover,
-.stop-button:hover,
-.home-button:hover,
-.reset-button:hover {
+.stop-button:hover {
   background-color: #45a049;
 }
 
 .alphabet-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   gap: 10px;
   margin: 20px 0;
 }
@@ -269,42 +149,143 @@
   font-weight: bold;
 }
 
-/* Tablets (≥600px) */
-@media (min-width: 600px) {
-  .homepage, .game-page {
-    padding: 30px;
-    max-width: 700px;
-  }
+.home-button {
+  display: flex;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  transition: background-color 0.3s ease;
+}
 
+.home-button:hover {
+  background-color: #45a049;
+}
+
+
+/* Estilos Responsivos */
+
+/* Dispositivos Móveis (smartphones) */
+@media screen and (max-width: 480px) {
+  .homepage {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+  .homepage h1 {
+    font-size: 1.5rem;
+  }
+  .homepage input[type="number"],
+  .homepage input[type="text"] {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  .homepage button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
   .alphabet-grid {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
   }
-
-  .stop-button {
-    padding: 30px 100px;
+  .letter-button {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  .game-page {
+    max-width: 95%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+  .sort-button,
+  .stop-button,
+  .reset-button,
+  .home-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
   }
 }
 
-/* Notebooks e PCs (≥900px) */
-@media (min-width: 900px) {
+/* Tablets */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .homepage {
+    max-width: 95%;
+    margin: 30px auto;
+    padding: 20px;
+  }
+  .homepage h1 {
+    font-size: 1.75rem;
+  }
+  .homepage input[type="number"],
+  .homepage input[type="text"] {
+    padding: 9px;
+    font-size: 0.95rem;
+  }
+  .homepage button {
+    padding: 11px 22px;
+    font-size: 0.95rem;
+  }
+  .alphabet-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+  .letter-button {
+    padding: 9px;
+    font-size: 0.95rem;
+  }
+  .game-page {
+    max-width: 90%;
+    margin: 25px auto;
+    padding: 18px;
+  }
+  .sort-button,
+  .stop-button,
+  .reset-button,
+  .home-button {
+    padding: 9px 18px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Notebooks e Desktop */
+@media screen and (min-width: 1025px) {
+  /* As definições originais já atendem bem estas telas */
   .homepage {
     max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
   }
-
-  .game-page {
-    max-width: 800px;
+  .homepage h1 {
+    font-size: 2rem;
   }
-
+  .homepage input[type="number"],
+  .homepage input[type="text"] {
+    font-size: 1rem;
+  }
+  .homepage button {
+    font-size: 1rem;
+  }
   .alphabet-grid {
     grid-template-columns: repeat(8, 1fr);
   }
-
-  .stop-button {
-    padding: 50px 150px;
+  .letter-button {
+    padding: 10px;
+    font-size: 1rem;
   }
-
-  .homepage h1,
-  .game-page h2 {
-    font-size: 2rem;
+  .game-page {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+  }
+  .sort-button,
+  .stop-button,
+  .reset-button,
+  .home-button {
+    font-size: 1rem;
   }
 }
