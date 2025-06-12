@@ -34,13 +34,13 @@ Este é um projeto de um jogo estilo *Stop* (também conhecido como Adedonha), d
 
 ## 🗂️ Estrutura de Pastas
 /src
-├── components
-│ ├── HomePage.jsx
-│ └── GamePage.jsx
-├── styles
-│ └── styles.css
-├── App.jsx
-└── index.js
+├── components  
+│ ├── HomePage.jsx  
+│ └── GamePage.jsx  
+├── styles  
+│ └── styles.css  
+├── App.jsx  
+└── index.js  
 ## 🧠 Lógica do Jogo
 
 - Um jogador por vez pode clicar em uma letra.
@@ -51,38 +51,38 @@ Este é um projeto de um jogo estilo *Stop* (também conhecido como Adedonha), d
 
 ## 📦 Instalação e Execução
 
-1. Clone o repositório:
+1. Clone o repositório:  
 
 git clone https://github.com/seu-usuario/jogo-stop-react.git
 cd jogo-stop-react
 
-2. Instale as dependências:
+2. Instale as dependências:  
 npm install
 
-3.Inicie o servidor de desenvolvimento:
+3.Inicie o servidor de desenvolvimento:  
 npm start
 O projeto estará acessível em http://localhost:3000.
 
-✍️ Personalização
+✍️ Personalização  
 const categories = [
   'Nome', 'Cidade', 'Animal', 'Cor', 'Fruta', ...
 ];
-✨ Melhorias Futuras
-Adição de perguntas e respostas por categoria.
+✨ Melhorias Futuras  
+Adição de perguntas e respostas por categoria.  
 
-Validação automática de respostas.
+Validação automática de respostas.  
 
-Histórico de partidas.
+Histórico de partidas.  
 
-Exportação dos resultados.
+Exportação dos resultados.  
 
-Integração com banco de dados e autenticação de usuários.
+Integração com banco de dados e autenticação de usuários.  
 
 📸 Capturas de Tela
-![Logo do Inicio do Jogo](./assets/TelaInicial.JPG)
-![Logo do Escolhas dos Jogadores](./assets/TelaEscolhas.JPG)
-![Logo do Jogo](./assets/TelaDoJogo.JPG)
-![Logo do Vencedor](./assets/TelaVencedor.JPG)
+![Logo do Inicio do Jogo](https://github.com/maxwellmoura/GameStop/blob/main/src/assets/TelaInicial.JPG)  
+![Logo do Escolhas dos Jogadores](https://github.com/maxwellmoura/GameStop/blob/main/src/assets/)TelaEscolhas.JPG)  
+![Logo do Jogo](https://github.com/maxwellmoura/GameStop/blob/main/src/assets/)TelaDoJogo.JPG)  
+![Logo do Vencedor](https://github.com/maxwellmoura/GameStop/blob/main/src/assets/)TelaVencedor.JPG)  
 
 📄 Licença
 Este projeto está sob a licença MIT. Sinta-se à vontade para modificá-lo, distribuí-lo e utilizá-lo como base para novos jogos!
