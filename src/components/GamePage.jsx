@@ -24,12 +24,11 @@ const GamePage = ({ players }) => {
   const [selectedLetter, setSelectedLetter] = useState('');
   const [playerIndex, setPlayerIndex] = useState(0);
   const [scores, setScores] = useState(players.map(() => 0));
-  const [usedLetters, setUsedLetters] = useState([]); // letras confirmadas (pontuadas)
-  const [letterOwners, setLetterOwners] = useState({}); // letra -> jogador dono
-  const [letterTimes, setLetterTimes] = useState({}); // letra -> tempo da jogada
+  const [usedLetters, setUsedLetters] = useState([]); 
+  const [letterOwners, setLetterOwners] = useState({}); 
+  const [letterTimes, setLetterTimes] = useState({}); 
 
-  // Controle do timer
-  useEffect(() => {
+   useEffect(() => {
     let interval;
     if (isRunning && timer > 0) {
       interval = setInterval(() => {
@@ -61,25 +60,25 @@ const GamePage = ({ players }) => {
     setPlayerIndex(0);
   };
 
-  // Clique na letra: só pode clicar se timer rodando, e só pode selecionar uma letra por jogador
+  
   const handleLetterClick = (letter) => {
     if (!currentCategory || !isRunning || timer === 0) return;
-    if (selectedLetter) return; // já selecionou letra nesta rodada, aguarda STOP
+    if (selectedLetter) return; 
 
-    if (usedLetters.includes(letter)) return; // letra já confirmada, não pode mais selecionar
+    if (usedLetters.includes(letter)) return;
 
     setSelectedLetter(letter);
   };
 
-  // Botão STOP: computa ponto se tem letra selecionada, passa a vez e pausa timer
+  
   const handleStop = () => {
     if (timer === 0) return;
 
     if (isRunning) {
-      // parar o timer
+      
       setIsRunning(false);
 
-      // computar ponto da letra selecionada, se houver
+      
       if (selectedLetter) {
         const newScores = [...scores];
         newScores[playerIndex] += 1;
@@ -92,27 +91,26 @@ const GamePage = ({ players }) => {
         setPlayerIndex((prev) => (prev + 1) % players.length);
       }
     } else {
-      // se timer está parado, inicia timer para próxima rodada
       setIsRunning(true);
       setSelectedLetter('');
     }
   };
 
-  // Correção: duplo clique em letra já usada para remover ponto e restaurar tempo
+ 
   const handleLetterDoubleClick = (letter) => {
-    if (isRunning) return; // só pode corrigir com timer parado
+    if (isRunning) return;
 
-    if (!usedLetters.includes(letter)) return; // só corrige letras confirmadas
+    if (!usedLetters.includes(letter)) return; 
 
     const owner = letterOwners[letter];
     if (owner === undefined) return;
 
-    // Remove ponto do dono original
+    
     const newScores = [...scores];
     newScores[owner] = Math.max(0, newScores[owner] - 1);
     setScores(newScores);
 
-    // Remove letra das usadas, dono e tempo
+    
     setUsedLetters(usedLetters.filter((l) => l !== letter));
     const newOwners = { ...letterOwners };
     delete newOwners[letter];
@@ -123,7 +121,6 @@ const GamePage = ({ players }) => {
     delete newTimes[letter];
     setLetterTimes(newTimes);
 
-    // Restaura tempo da jogada removida e deixa o dono da letra como jogador atual
     setTimer(restoredTime);
     setPlayerIndex(owner);
 
