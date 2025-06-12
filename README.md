@@ -33,14 +33,15 @@ Este é um projeto de um jogo estilo *Stop* (também conhecido como Adedonha), d
 - JavaScript moderno (ES6+)
 
 ## 🗂️ Estrutura de Pastas
-/src
-├── components
-│ ├── HomePage.jsx
-│ └── GamePage.jsx
-├── styles
-│ └── styles.css
-├── App.jsx
-└── index.js
+/src.
+├── components.
+│ ├── HomePage.jsx.
+│ └── GamePage.jsx.
+├── styles.
+│ └── styles.css.
+├── App.jsx.
+└── index.js.
+
 ## 🧠 Lógica do Jogo
 
 - Um jogador por vez pode clicar em uma letra.
@@ -80,10 +81,10 @@ Exportação dos resultados.
 Integração com banco de dados e autenticação de usuários.
 
 📸 Capturas de Tela
-![Logo do Inicio do Jogo](./assets/TelaInicial.JPG)
-![Logo do Escolhas dos Jogadores](./assets/TelaEscolhas.JPG)
-![Logo do Jogo](./assets/TelaDoJogo.JPG)
-![Logo do Vencedor](./assets/TelaVencedor.JPG)
+![Logo do Inicio do Jogo](https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/assets/TelaInicial.JPG)
+![Logo do Escolhas dos Jogadores](https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/assets/TelaEscolhas.JPG)
+![Logo do Jogo](https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/assets/TelaDoJogo.JPG)
+![Logo do Vencedor](https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/assets/TelaVencedor.JPG)
 
 📄 Licença
 Este projeto está sob a licença MIT. Sinta-se à vontade para modificá-lo, distribuí-lo e utilizá-lo como base para novos jogos!
